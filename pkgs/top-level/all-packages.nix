@@ -278,8 +278,6 @@ with pkgs;
 
   cereal = cereal_1_3_0;
 
-  cewl = callPackage ../tools/security/cewl { };
-
   chef-cli = callPackage ../tools/misc/chef-cli { };
 
   checkov = callPackage ../development/tools/analysis/checkov { };
@@ -292,10 +290,6 @@ with pkgs;
     perl = perl538;
     perlPackages = perl538Packages;
   };
-
-  cocogitto = callPackage ../development/tools/cocogitto { };
-
-  coldsnap = callPackage ../tools/admin/coldsnap { };
 
   collision = callPackage ../applications/misc/collision { };
 
@@ -330,8 +324,6 @@ with pkgs;
   ebpf-verifier = callPackage ../tools/networking/ebpf-verifier {
     catch2 = catch2_3;
   };
-
-  eludris = callPackage ../tools/misc/eludris { };
 
   enochecker-test = with python3Packages; callPackage ../development/tools/enochecker-test { };
 
@@ -1772,10 +1764,6 @@ with pkgs;
   foxdot = with python3Packages; toPythonApplication foxdot;
 
   fluffychat-web = fluffychat.override { targetFlutterPlatform = "web"; };
-
-  gbl = callPackage ../tools/archivers/gbl {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
 
   genpass = callPackage ../tools/security/genpass { };
 
@@ -3600,7 +3588,7 @@ with pkgs;
   hal-hardware-analyzer = libsForQt5.callPackage ../applications/science/electronics/hal-hardware-analyzer { };
 
   halide = callPackage ../development/compilers/halide {
-    llvmPackages = llvmPackages_18;
+    llvmPackages = llvmPackages_19;
   };
 
   hareThirdParty = recurseIntoAttrs (callPackage ./hare-third-party.nix { });
@@ -4476,16 +4464,10 @@ with pkgs;
 
   openrefine = callPackage ../applications/science/misc/openrefine { jdk = jdk17; };
 
-  openrgb = libsForQt5.callPackage ../applications/misc/openrgb { };
-
   openrgb-with-all-plugins = openrgb.withPlugins [
     openrgb-plugin-effects
     openrgb-plugin-hardwaresync
   ];
-
-  openrgb-plugin-effects = libsForQt5.callPackage ../applications/misc/openrgb-plugins/effects { };
-
-  openrgb-plugin-hardwaresync = libsForQt5.callPackage ../applications/misc/openrgb-plugins/hardwaresync { };
 
   toastify = darwin.apple_sdk_11_0.callPackage ../tools/misc/toastify {};
 
@@ -5353,6 +5335,9 @@ with pkgs;
 
   webassemblyjs-cli = nodePackages."@webassemblyjs/cli-1.11.1";
   webassemblyjs-repl = nodePackages."@webassemblyjs/repl-1.11.1";
+
+  buildWasmBindgenCli = callPackage ../build-support/wasm-bindgen-cli { };
+
   wasm-strip = nodePackages."@webassemblyjs/wasm-strip";
   wasm-text-gen = nodePackages."@webassemblyjs/wasm-text-gen-1.11.1";
   wast-refmt = nodePackages."@webassemblyjs/wast-refmt-1.11.1";
@@ -5531,10 +5516,6 @@ with pkgs;
   };
 
   xidlehook = callPackage ../tools/X11/xidlehook {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
-  xsv = callPackage ../tools/text/xsv {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
@@ -6619,10 +6600,6 @@ with pkgs;
   );
   buildRustCrateHelpers = callPackage ../build-support/rust/build-rust-crate/helpers.nix { };
 
-  cargo-web = callPackage ../development/tools/rust/cargo-web {
-    inherit (darwin.apple_sdk.frameworks) CoreServices Security;
-  };
-
   cargo-flamegraph = callPackage ../development/tools/rust/cargo-flamegraph {
     inherit (darwin.apple_sdk.frameworks) Security;
     inherit (linuxPackages) perf;
@@ -6665,9 +6642,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-tarpaulin = callPackage ../development/tools/analysis/cargo-tarpaulin {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-  cargo-asm = callPackage ../development/tools/rust/cargo-asm {
     inherit (darwin.apple_sdk.frameworks) Security;
   };
   cargo-bazel = callPackage ../development/tools/rust/cargo-bazel {
@@ -7496,9 +7470,7 @@ with pkgs;
 
   fortran-language-server = python3.pkgs.callPackage ../development/tools/language-servers/fortran-language-server { };
 
-  inherit (callPackages ../development/tools/language-servers/nixd {
-    llvmPackages = llvmPackages_16;
-  }) nixf nixt nixd;
+  inherit (callPackages ../development/tools/language-servers/nixd { }) nixf nixt nixd;
 
   ansible-later = callPackage ../tools/admin/ansible/later.nix { };
 
@@ -7619,10 +7591,6 @@ with pkgs;
   buildifier = bazel-buildtools;
   buildozer = bazel-buildtools;
   unused_deps = bazel-buildtools;
-
-  rebazel = callPackage ../development/tools/rebazel {
-    inherit (darwin.apple_sdk.frameworks) CoreServices;
-  };
 
   buildBazelPackage = darwin.apple_sdk_11_0.callPackage ../build-support/build-bazel-package { };
 
@@ -8284,6 +8252,10 @@ with pkgs;
   };
 
   sloc = nodePackages.sloc;
+
+  slurm = callPackage ../by-name/sl/slurm/package.nix {
+    nvml = cudaPackages.cuda_nvml_dev;
+  };
 
   snowman = qt5.callPackage ../development/tools/analysis/snowman { };
 
@@ -12741,10 +12713,6 @@ with pkgs;
 
   polychromatic = qt6Packages.callPackage ../applications/misc/polychromatic { };
 
-  powerline-rs = callPackage ../tools/misc/powerline-rs {
-    inherit (darwin.apple_sdk.frameworks) Security;
-  };
-
   qogir-kde = libsForQt5.callPackage ../data/themes/qogir-kde { };
 
   ricochet-refresh = callPackage ../by-name/ri/ricochet-refresh/package.nix {
@@ -14240,8 +14208,6 @@ with pkgs;
     libsoundio = null;
     portaudio = null;
   };
-
-  lsp-plugins = callPackage ../applications/audio/lsp-plugins { php = php82; };
 
   luminanceHDR = libsForQt5.callPackage ../applications/graphics/luminance-hdr { };
 
@@ -17975,8 +17941,6 @@ with pkgs;
 
   terraform-landscape = callPackage ../applications/networking/cluster/terraform-landscape { };
 
-  terraspace = callPackage ../applications/networking/cluster/terraspace { };
-
   tftui = python3Packages.callPackage ../applications/networking/cluster/tftui { };
 
   touchosc = callPackage ../applications/audio/touchosc { };
@@ -17986,8 +17950,6 @@ with pkgs;
   };
 
   unityhub = callPackage ../development/tools/unityhub { };
-
-  urbit = callPackage ../misc/urbit { };
 
   unixcw = libsForQt5.callPackage ../applications/radio/unixcw { };
 
@@ -18120,8 +18082,6 @@ with pkgs;
   zncModules = recurseIntoAttrs (
     callPackage ../applications/networking/znc/modules.nix { }
   );
-
-  zrok = callPackage ../tools/networking/zrok { };
 
   bullet = callPackage ../development/libraries/bullet {
     inherit (darwin.apple_sdk.frameworks) Cocoa OpenGL;

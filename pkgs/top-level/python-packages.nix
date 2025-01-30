@@ -2572,6 +2572,8 @@ self: super: with self; {
 
   commonregex = callPackage ../development/python-modules/commonregex { };
 
+  compliance-trestle = callPackage ../development/python-modules/compliance-trestle { };
+
   complycube = callPackage ../development/python-modules/complycube { };
 
   compreffor = callPackage ../development/python-modules/compreffor { };
@@ -5791,7 +5793,7 @@ self: super: with self; {
 
   hakuin = callPackage ../development/python-modules/hakuin { };
 
-  halide = toPythonModule (pkgs.halide.override { pythonSupport = true; python3Packages = self; });
+  halide = toPythonModule (pkgs.halide.override { pythonSupport = true; python3Packages = self; }).lib;
 
   halo = callPackage ../development/python-modules/halo { };
 
@@ -7246,6 +7248,8 @@ self: super: with self; {
 
   lektricowifi = callPackage ../development/python-modules/lektricowifi { };
 
+  letpot = callPackage ../development/python-modules/letpot { };
+
   leveldb = callPackage ../development/python-modules/leveldb { };
 
   levenshtein = callPackage ../development/python-modules/levenshtein { };
@@ -7862,6 +7866,8 @@ self: super: with self; {
   mako = callPackage ../development/python-modules/mako { };
 
   malduck = callPackage ../development/python-modules/malduck { };
+
+  mallard-ducktype = callPackage ../development/python-modules/mallard-ducktype { };
 
   mammoth = callPackage ../development/python-modules/mammoth { };
 
@@ -9927,6 +9933,8 @@ self: super: with self; {
 
   osxphotos = callPackage ../development/python-modules/osxphotos { };
 
+  otpauth = callPackage ../development/python-modules/otpauth { };
+
   ots-python = callPackage ../development/python-modules/ots-python { };
 
   outcome = callPackage ../development/python-modules/outcome { };
@@ -10025,6 +10033,8 @@ self: super: with self; {
   para = callPackage ../development/python-modules/para { };
 
   paragraphs = callPackage ../development/python-modules/paragraphs { };
+
+  parallel-ssh = callPackage ../development/python-modules/parallel-ssh { };
 
   param = callPackage ../development/python-modules/param { };
 
@@ -14522,7 +14532,15 @@ self: super: with self; {
 
   scienceplots = callPackage ../development/python-modules/scienceplots { };
 
+  scim2-client = callPackage ../development/python-modules/scim2-client { };
+
   scim2-filter-parser = callPackage ../development/python-modules/scim2-filter-parser { };
+
+  scim2-models = callPackage ../development/python-modules/scim2-models { };
+
+  scim2-server = callPackage ../development/python-modules/scim2-server { };
+
+  scim2-tester = callPackage ../development/python-modules/scim2-tester { };
 
   scikit-bio = callPackage ../development/python-modules/scikit-bio { };
 
@@ -15228,6 +15246,8 @@ self: super: with self; {
 
   speaklater3 = callPackage ../development/python-modules/speaklater3 { };
 
+  spectra = callPackage ../development/python-modules/spectra { };
+
   spectral-cube = callPackage ../development/python-modules/spectral-cube { };
 
   speechbrain = callPackage ../development/python-modules/speechbrain { };
@@ -15525,6 +15545,10 @@ self: super: with self; {
   sshpubkeys = callPackage ../development/python-modules/sshpubkeys { };
 
   sshtunnel = callPackage ../development/python-modules/sshtunnel { };
+
+  ssh-python = callPackage ../development/python-modules/ssh-python { };
+
+  ssh2-python = callPackage ../development/python-modules/ssh2-python { };
 
   sslib = callPackage ../development/python-modules/sslib { };
 
@@ -17932,6 +17956,8 @@ self: super: with self; {
   w1thermsensor = callPackage ../development/python-modules/w1thermsensor { };
 
   w3lib = callPackage ../development/python-modules/w3lib { };
+
+  wadler-lindig = callPackage ../development/python-modules/wadler-lindig { };
 
   wadllib = callPackage ../development/python-modules/wadllib { };
 
